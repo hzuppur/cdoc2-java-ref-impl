@@ -299,7 +299,7 @@ class TarDeflateTest implements TestLifecycleLogger {
         for (String fileName: VALID_FILE_NAMES) {
             File file = createTar(tempDir, TGZ_FILE_NAME + '.' + i++, fileName, PAYLOAD);
             var result = new TarDeflate(new FileInputStream(file))
-                .extractFilesToDir(List.of(fileName), tempDir);
+                .extractFilesToDir(List.of(sanitizeFileName(fileName)), tempDir);
             assertEquals(1, result.size());
         }
     }
@@ -399,6 +399,16 @@ class TarDeflateTest implements TestLifecycleLogger {
         assertTrue(closeWasCalled[0]);
     }
 
+    @Test
+    void filenameWithTrailingSlashIsAllowed(@TempDir Path tempDir) throws IOException {
+        var fileName = "abc/";
+        File file = createTar(tempDir, TGZ_FILE_NAME, fileName, PAYLOAD);
+
+        var result = new TarDeflate(new FileInputStream(file))
+            .extractFilesToDir(List.of(sanitizeFileName(fileName)), tempDir);
+        assertEquals(1, result.size());
+    }
+
     private static File createAndWriteToFile(Path path, String fileName, String contents) throws IOException {
         File file = path.resolve(fileName).toFile();
         try (FileOutputStream fos = new FileOutputStream(file)) {
@@ -413,9 +423,18 @@ class TarDeflateTest implements TestLifecycleLogger {
 
         try (FileOutputStream fos = new FileOutputStream(outFile)) {
             ByteArrayInputStream bos = new ByteArrayInputStream(entryContents.getBytes(UTF_8));
-            Tar.archiveData(fos, bos, entryFileName);
+            Tar.archiveData(fos, bos, sanitizeFileName(entryFileName));
         }
         return outFile;
+    }
+
+    private static String sanitizeFileName(String fileName) {
+        // Remove all trailing slashes
+        while (fileName.endsWith("/")) {
+            fileName = fileName.substring(0, fileName.length() - 1);
+        }
+
+        return fileName;
     }
 
 }
