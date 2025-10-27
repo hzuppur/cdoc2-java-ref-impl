@@ -400,7 +400,17 @@ class TarDeflateTest implements TestLifecycleLogger {
     }
 
     @Test
-    void filenameWithTrailingSlashIsAllowed(@TempDir Path tempDir) throws IOException {
+    void canArchiveFileWithTrailingSlash(@TempDir Path tempDir) throws IOException {
+        var fileName = "abc/";
+        // here the trailing slash is already removed by path.resolve()
+        File file = createAndWriteToFile(tempDir, fileName, PAYLOAD);
+        var bos = new ByteArrayOutputStream();
+        Tar.archiveFiles(bos, List.of(file));
+        assertTrue(bos.toByteArray().length > 0);
+    }
+
+    @Test
+    void canExtractFileWithTrailingSlash(@TempDir Path tempDir) throws IOException {
         var fileName = "abc/";
         File file = createTar(tempDir, TGZ_FILE_NAME, fileName, PAYLOAD);
 
