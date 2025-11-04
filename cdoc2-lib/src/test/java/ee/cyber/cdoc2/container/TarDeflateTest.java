@@ -446,8 +446,10 @@ class TarDeflateTest implements TestLifecycleLogger {
         // the directory and there is no file name, so the file header should be 0 bytes that throws an error later.
         //
         // The file name abc/ does not cause issue in the reference implementation,
-        // because the filename is not passed to the reference implementation in the File object, rather than raw string.
-        // When creating the file, the call to the File file = path.resolve(fileName).toFile(); removes the trailing slash from the file name.
+        // because the filename is not passed to the reference implementation in the File object,
+        // rather than raw string.
+        // When creating the file, the call to the File file = path.resolve(fileName).toFile();
+        // removes the trailing slash from the file name.
         // Because of this, the FileNameValidator does not give an error for a filename ending with "/".
         while (fileName.endsWith("/")) {
             fileName = fileName.substring(0, fileName.length() - 1);
