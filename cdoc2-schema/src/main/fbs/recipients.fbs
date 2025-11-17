@@ -8,7 +8,8 @@ union KeyDetailsUnion {
 // Elliptic curve type enum for ECCPublicKey recipient
 enum EllipticCurve:byte {
     UNKNOWN,
-    secp384r1
+    secp384r1,
+    secp256r1
 }
 
 table RsaKeyDetails {
