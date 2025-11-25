@@ -58,6 +58,9 @@ public enum EllipticCurve {
         if (this == EllipticCurve.SECP384R1) {
             return ECKeys.isECSecp384r1(keyPair);
         }
+        if (this == EllipticCurve.SECP256R1) {
+            return ECKeys.isECSecp256r1(keyPair);
+        }
         throw new IllegalStateException("isValidKeyPair not implemented for " + this);
     }
 

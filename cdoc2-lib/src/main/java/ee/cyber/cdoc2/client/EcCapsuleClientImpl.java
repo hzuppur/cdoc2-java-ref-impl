@@ -64,13 +64,15 @@ public class EcCapsuleClientImpl implements EcCapsuleClient {
             if (capsuleOptional.isPresent()) {
                 Capsule capsule = capsuleOptional.get();
 
-                if (Capsule.CapsuleTypeEnum.ECC_SECP384R1 != capsule.getCapsuleType()) {
-                    throw new ExtApiException("Unsupported capsule type " + capsule.getCapsuleType());
-                }
-
-                return Optional.of(
-                    EllipticCurve.SECP384R1.decodeFromTls(ByteBuffer.wrap(capsule.getEphemeralKeyMaterial()))
-                );
+                return switch (capsule.getCapsuleType()) {
+                    case ECC_SECP384R1 -> Optional.of(
+                        EllipticCurve.SECP384R1.decodeFromTls(ByteBuffer.wrap(capsule.getEphemeralKeyMaterial()))
+                    );
+                    case ECC_SECP256R1 -> Optional.of(
+                        EllipticCurve.SECP256R1.decodeFromTls(ByteBuffer.wrap(capsule.getEphemeralKeyMaterial()))
+                    );
+                    default -> throw new ExtApiException("Unsupported capsule type " + capsule.getCapsuleType());
+                };
             }
 
             return Optional.empty();
