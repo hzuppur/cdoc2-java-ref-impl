@@ -36,6 +36,7 @@ import static ee.cyber.cdoc2.util.ConfigurationPropertyUtil.getBoolean;
  * @param clientKeyStorePassword client key store password
  * @param clientKeyStorePwdPrompt client key store password prompt
  * @param pkcs11LibraryPath PKCS11 library path
+ * @param pkcs11Slot PKCS11 slot
  */
 public record KeyCapsuleClientConfigurationProps(
     String clientServerId,
@@ -50,7 +51,7 @@ public record KeyCapsuleClientConfigurationProps(
     String clientKeyStorePassword,
     String clientKeyStorePwdPrompt,
     String pkcs11LibraryPath,
-    Integer slot
+    Integer pkcs11Slot
 ) implements KeyCapsuleClientConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(KeyCapsuleClientConfigurationProps.class);
@@ -224,7 +225,7 @@ public record KeyCapsuleClientConfigurationProps(
 
     @Override
     public KeyStore getClientKeyStore() {
-        return loadClientKeyStore(slot);
+        return loadClientKeyStore(pkcs11Slot);
     }
 
     @Override

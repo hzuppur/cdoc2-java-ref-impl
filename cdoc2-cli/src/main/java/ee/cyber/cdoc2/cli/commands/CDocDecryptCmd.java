@@ -69,7 +69,8 @@ public class CDocDecryptCmd implements Callable<Void> {
         props.forEach(System::setProperty);
     }
 
-    @Option(names = {"-c", "--crypto-stick"}, description = "Specify what type of crypto stick is used, allowed values: [SECP256R1, SECP384R1]")
+    @Option(names = {"-c", "--crypto-stick"},
+        description = "Specify what type of crypto stick is used, allowed values: [SECP256R1, SECP384R1]")
     private CryptoStickConf cryptoStickConf;
 
     @Override
