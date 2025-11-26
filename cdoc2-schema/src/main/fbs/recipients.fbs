@@ -6,6 +6,7 @@ union KeyDetailsUnion {
 }
 
 // Elliptic curve type enum for ECCPublicKey recipient
+//   The clients should not crash with unknown values and try to continue, if possible.
 enum EllipticCurve:byte {
     UNKNOWN,
     secp384r1,
