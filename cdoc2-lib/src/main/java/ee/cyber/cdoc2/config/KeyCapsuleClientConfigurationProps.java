@@ -87,7 +87,7 @@ public record KeyCapsuleClientConfigurationProps(
         var clientKeyStorePassword = properties.getProperty(CLIENT_STORE_PWD);
         var clientKeyStorePwdPrompt = properties.getProperty(CLIENT_STORE_PWD_PROMPT);
         var pkcs11LibraryPath = properties.getProperty(PKCS11_LIBRARY_PROPERTY, null);
-        var slot = getSlotOrDefault();
+        var slot = getSlotOrDefault(properties);
 
         return new KeyCapsuleClientConfigurationProps(
             clientServerId,
@@ -209,9 +209,9 @@ public record KeyCapsuleClientConfigurationProps(
         return null;
     }
 
-    public static Integer getSlotOrDefault() {
+    public static Integer getSlotOrDefault(Properties properties) {
         try {
-            return Integer.parseInt(System.getProperty(PKCS11_SLOT, String.valueOf(DEFAULT_SLOT)));
+            return Integer.parseInt(properties.getProperty(PKCS11_SLOT, String.valueOf(DEFAULT_SLOT)));
         } catch (NumberFormatException e) {
             return DEFAULT_SLOT;
         }
