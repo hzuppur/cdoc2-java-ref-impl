@@ -354,7 +354,6 @@
                 </executions>
                 <configuration>
                     <failIfNotMatch>false</failIfNotMatch>
-                    <userProperty>true</userProperty>
                     <!--skip>true</skip-->
                 </configuration>
             </plugin>
