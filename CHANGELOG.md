@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.0] Adding support for RSA based crypto sticks (2026-01-xx)
+
+### Features
+* Implement support for RSA based crypto sticks
+
+### Internal
+* Upgraded Spring boot 3.3.3 -> 4.0.1 + other third-party dependency updates
+* Censor the file name in the logs.
+
 ## [3.0.0] Adding support for `secp256r1` elliptic curves (2025-12-01)
 
 ### Features
