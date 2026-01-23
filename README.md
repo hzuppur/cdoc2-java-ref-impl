@@ -335,6 +335,14 @@ See [cdoc2-cli/README.md](cdoc2-cli/README.md)
 
 See [VERSIONING.md](VERSIONING.md)
 
+### Creating SBOM (Software Bill of Materials)
+
+To create the SBOM report, run:
+```
+mvn cyclonedx:makeAggregateBom
+```
+The generated BOM report will be in `target/`.
+
 ## Publishing
 
 ### GitHub
