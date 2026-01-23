@@ -337,11 +337,13 @@ See [VERSIONING.md](VERSIONING.md)
 
 ### Creating SBOM (Software Bill of Materials)
 
-To create the SBOM report, run:
+The SBOM report will be automatically generated at build time.
+
+To manually create the SBOM report, run:
 ```
 mvn cyclonedx:makeAggregateBom
 ```
-The generated BOM report will be in `target/`.
+The generated reports (`target/bom.json` and `target/bom.xml`) include dependencies from all submodules.
 
 ## Publishing
 
