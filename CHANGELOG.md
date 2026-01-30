@@ -11,6 +11,7 @@
 * Add attentional unit tests to cdoc2-cli for `secp256r1` elliptic curve support.
 * Add bats tests for `secp256r1` elliptic curve support.
 * Upgraded Spring boot 3.3.3 -> 4.0.1 + other third-party dependency updates.
+* Censor the file name in the logs.
 
 ### Maven package versions:
 ```
