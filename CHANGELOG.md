@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.1.0] Bug fixes, documentation, tests improvements (2026-xx-xx)
+
+### Bug Fixes
+* Add the `--crypto-stick` option to the cdoc2-cli commands `list` and `re-encrypt`.
+
+### Internal
+* Improve the cdoc2-cli [README.md](cdoc2-cli/README.md).
+* Add attentional unit tests to cdoc2-cli for `secp256r1` elliptic curve support.
+* Add bats tests for `secp256r1` elliptic curve support.
+
+### Maven package versions:
+```
+cdoc2 2.0.0
+cdoc2-schema 2.0.0
+cdoc2-lib 3.1.0
+cdoc2-client 2.0.0
+cdoc2-cli 1.8.0-SNAPSHOT
+```
+
 ## [3.0.0] Adding support for `secp256r1` elliptic curves (2025-12-01)
 
 ### Features
