@@ -1,14 +1,16 @@
 # Changelog
 
-## [3.1.0] Bug fixes, documentation, tests improvements (2026-xx-xx)
+## [3.1.0] Adding support for RSA based crypto sticks (2026-01-xx)
 
 ### Bug Fixes
 * Add the `--crypto-stick` option to the cdoc2-cli commands `list` and `re-encrypt`.
+* Implement support for RSA based crypto sticks.
 
 ### Internal
 * Improve the cdoc2-cli [README.md](cdoc2-cli/README.md).
 * Add attentional unit tests to cdoc2-cli for `secp256r1` elliptic curve support.
 * Add bats tests for `secp256r1` elliptic curve support.
+* Upgraded Spring boot 3.3.3 -> 4.0.1 + other third-party dependency updates.
 
 ### Maven package versions:
 ```
