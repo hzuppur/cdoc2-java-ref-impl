@@ -1,10 +1,12 @@
 # Changelog
 
-## [3.1.0] Adding support for RSA based crypto sticks (2026-01-xx)
+## [3.1.0] Adding support for RSA based crypto sticks (2026-01-30)
+
+### Features
+* Implement support for RSA based crypto sticks.
 
 ### Bug Fixes
 * Add the `--crypto-stick` option to the cdoc2-cli commands `list` and `re-encrypt`.
-* Implement support for RSA based crypto sticks.
 
 ### Internal
 * Improve the cdoc2-cli [README.md](cdoc2-cli/README.md).
@@ -17,9 +19,9 @@
 ```
 cdoc2 2.0.0
 cdoc2-schema 2.0.0
-cdoc2-lib 3.1.0
-cdoc2-client 2.0.0
-cdoc2-cli 1.8.0-SNAPSHOT
+cdoc2-lib 3.2.1
+cdoc2-client 2.0.1
+cdoc2-cli 1.8.0
 ```
 
 ## [3.0.0] Adding support for `secp256r1` elliptic curves (2025-12-01)
