@@ -122,6 +122,22 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <fork>true</fork>
+
+                    <compilerArgs>
+                        <arg>--add-modules</arg>
+                        <arg>jdk.crypto.cryptoki</arg>
+
+                        <arg>--add-exports</arg>
+                        <arg>jdk.crypto.cryptoki/sun.security.pkcs11.wrapper=ALL-UNNAMED</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
                 <!-- compile tests as a jar for use by sibling projects -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
