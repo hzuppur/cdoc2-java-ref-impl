@@ -86,7 +86,8 @@ public class CDocReEncryptCmd implements Callable<Void> {
     }
 
     @CommandLine.Option(names = {"-c", "--crypto-stick"},
-        description = "Specify what type of crypto stick is used, allowed values: [SECP256R1, SECP384R1]")
+        description = "Specify what type of crypto stick is used, allowed values: "
+            + "[SECP256R1, SECP384R1, RSA3072, RSA4096]")
     private CryptoStickConf cryptoStickConf;
 
     @Override
@@ -96,7 +97,7 @@ public class CDocReEncryptCmd implements Callable<Void> {
         }
 
         DecryptionKeyMaterial decryptionKeyMaterial = (null == this.exclusive)
-            ? getSmartCardDecryptionKeyMaterial(this.slot, this.keyAlias, cryptoStickConf)
+            ? getSmartCardDecryptionKeyMaterial(this.slot, this.keyAlias, this.cryptoStickConf)
             : getDecryptionKeyMaterial(this.cdocFile, this.exclusive);
 
         File destCdocFile = getDestinationFile();
