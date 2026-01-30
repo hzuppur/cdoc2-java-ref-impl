@@ -358,18 +358,16 @@ Requirements:
 * OpenSC is installed
 * SafeNet Authentication Client (provides the pkcs11 library) is installed.
   See https://knowledge.digicert.com/generalinformation/INFO1982.html for details.
-* Create an OpenSC configuration file `opensc-safenet.cfg` for the USB device in the following format
-
-```
-name=SafeNet-eToken
-library=/usr/lib/libeToken.so
-slot=1
-```
 
 To find the slot for the SafeNet eToken, execute:
 
 ```
 pkcs11-tool --module /usr/lib/libeToken.so -L
+```
+
+Configure the slot in the `application.properties`:
+```
+ee.cyber.cdoc2.pkcs11.slot=1
 ```
 
 List entries on the eToken device:
@@ -389,13 +387,13 @@ Encrypt certificate as described in the "Encrypting documents with certificate" 
 List files encrypted for the eToken device by specifying pkcs11 library, slot and key alias:
 
 ```
-java -jar target/cdoc2-cli-*.jar list -f file-for-etoken.cdoc2 -Dpkcs11-library=/usr/lib/libeToken.so -s 2 -a cdoc2-test
+java -jar target/cdoc2-cli-*.jar list -f file-for-etoken.cdoc2 -Dpkcs11-library=/usr/lib/libeToken.so -a cdoc2-test --slot 1 --crypto-stick SECP256R1
 ```
 
 Decrypt files encrypted for the eToken device by specifying pkcs11 library, slot and key alias:
 
 ```
-java -jar target/cdoc2-cli-*.jar decrypt -f file-for-etoken.cdoc2 -Dpkcs11-library=/usr/lib/libeToken.so -s 2 -a cdoc2-test
+java -jar target/cdoc2-cli-*.jar decrypt -f file-for-etoken.cdoc2 -Dpkcs11-library=/usr/lib/libeToken.so 2 -a cdoc2-test --slot 1 --crypto-stick SECP256R1
 ```
 
 #### ee.cyber.cdoc2.overwrite 
